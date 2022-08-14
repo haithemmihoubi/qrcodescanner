@@ -26,7 +26,7 @@ export const QrGeneratorPage = () => {
   }
 
   return (
-    <div className='flex flex-wrap h-screen'>
+    <div className='flex flex-wrap pt-52'>
       <div className='flex-auto flex justify-center items-center h-full'>
         <AddForm onSubmit={addUserInformation} />
       </div>

@@ -9,22 +9,26 @@ const validate = values => {
     errors.firstName = 'Required';
   } else if (values.firstName.length > 15) {
     errors.firstName = 'Must be 15 characters or less';
-  } else if (!/^[A-Za-z0-9]*$/i.test(values.firstName)) {
-    errors.firstName = 'Must be only characters and/or numbers';
+  } else if (!/^[A-Za-z]*$/i.test(values.firstName)) {
+    errors.firstName = 'Must be only characters';
+  } else if (!(values.firstName[0] === values.firstName[0].toUpperCase())) {
+    errors.firstName = 'Must start with uppercase characters';
   }
 
   if (!values.lastName) {
     errors.lastName = 'Required';
   } else if (values.lastName.length > 20) {
     errors.lastName = 'Must be 20 characters or less';
-  } else if (!/^[A-Za-z0-9]*$/i.test(values.lastName)) {
-    errors.lastName = 'Must be only characters and/or numbers';
+  } else if (!/^[A-Za-z]*$/i.test(values.lastName)) {
+    errors.lastName = 'Must be only characters';
+  } else if (!(values.lastName[0] === values.lastName[0].toUpperCase())) {
+    errors.lastName = 'Must start with uppercase characters';
   }
 
   if (!values.orderId) {
     errors.orderId = 'Required';
-  } else if (!/^[A-Za-z0-9]*$/i.test(values.orderId)) {
-    errors.orderId = 'Must be only characters and/or numbers';
+  } else if (!/^[A-Za-z0-9-]*$/i.test(values.orderId)) {
+    errors.orderId = 'Must be characters, number and/or -';
   }
 
   return errors;
