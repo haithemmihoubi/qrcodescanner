@@ -1,4 +1,4 @@
-import './App.css';
+import { QrGeneratorPage } from './QrGeneratorPage/QrGeneratorPage';
 
 function App() {
     return (
