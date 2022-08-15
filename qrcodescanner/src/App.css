@@ -28,14 +28,14 @@
   color: #61dafb;
 }
 
-.qr-scan {
-  display: flex;
-  justify-content: center;
-}
+/*.qr-scan {*/
+/*  display: flex;*/
+/*  justify-content: center;*/
+/*}*/
 
-.title{
-  padding-bottom: 560px;
-}
+/*.title{*/
+/*  padding-bottom: 560px;*/
+/*}*/
 
 @keyframes App-logo-spin {
   from {
@@ -45,3 +45,4 @@
     transform: rotate(360deg);
   }
 }
+
