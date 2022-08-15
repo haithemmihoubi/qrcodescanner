@@ -4,16 +4,18 @@ import QRCode from 'qrcode.react';
 import { motion } from "framer-motion";
 import bcrypt from 'bcryptjs';
 
-export const QrGeneratorPage = () => {
+export const QrGeneratorPage = props => {
 
   const [hashedUserInformation, setHashedUserInformation] = useState('');
   const [isSubmited, setIsSubmited] = useState(false);
 
   const addUserInformation = userInput => {
-
-    const hashedUserInput = hashSalt(userInput);
-    setHashedUserInformation(hashedUserInput);
     setIsSubmited(true);
+
+    const hashedUserInput = hashSalt(JSON.stringify(userInput));
+    setHashedUserInformation(hashedUserInput);
+    
+    localStorage.setItem(hashedUserInput, JSON.stringify(userInput));
   }
 
   const hashSalt = DataToHash => {
@@ -21,8 +23,6 @@ export const QrGeneratorPage = () => {
     const hash = bcrypt.hashSync(DataToHash, salt);
     return hash;
   }
-
-  
 
   const downloadQrCode = () => {
     const canvas = document.getElementById("qr");

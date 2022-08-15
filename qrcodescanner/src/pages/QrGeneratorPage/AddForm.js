@@ -36,19 +36,21 @@ const validate = values => {
 };
 
 export const AddForm = props => {
-  // Pass the useFormik() hook initial form values, a validate function that will be called when
-  // form values change or fields are blurred, and a submit function that will
-  // be called when the form is submitted
+  
+  const generateId = () => {
+    return Date.now();
+  }
+
   const formik = useFormik({
     initialValues: {
+      id: '',
       firstName: '',
       lastName: '',
       orderId: '',
     },
     validate,
     onSubmit: values => {
-      const userInputJson = JSON.stringify(values, null, 2);
-      props.onSubmit(userInputJson);
+      props.onSubmit(values);
     },
   });
 
