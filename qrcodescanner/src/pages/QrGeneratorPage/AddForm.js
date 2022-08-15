@@ -61,11 +61,12 @@ export const AddForm = props => {
           <label htmlFor="firstName" className='block text-gray-700 text-base font-bold mb-2'>
             First Name
           </label>
-          <input
+          <motion.input
             id="firstName"
             name="firstName"
             type="text"
             onChange={formik.handleChange}
+            whileHover={{scale: 1.05, rotate: 1}}
             value={formik.values.firstName}
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
           />
@@ -76,11 +77,12 @@ export const AddForm = props => {
           <label htmlFor="lastName" className='block text-gray-700 text-base font-bold mb-2'>
             Last Name
           </label>
-          <input
+          <motion.input
             id="lastName"
             name="lastName"
             type="text"
             onChange={formik.handleChange}
+            whileHover={{scale: 1.05, rotate: -1}}
             value={formik.values.lastName}
             className="shadow appearance-none border rounded w-80 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
           />
@@ -91,11 +93,12 @@ export const AddForm = props => {
           <label htmlFor="orderId" className='block text-gray-700 text-base font-bold mb-2'>
             Order ID
           </label>
-          <input
+          <motion.input
             id="orderId"
             name="orderId"
             type="orderId"
             onChange={formik.handleChange}
+            whileHover={{scale: 1.05, rotate: 1}}
             value={formik.values.orderId}
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
           />
