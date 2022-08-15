@@ -1,5 +1,6 @@
 import React from 'react';
 import { useFormik } from 'formik';
+import { motion } from 'framer-motion';
 
 // A custom validation function. This must return an object
 // which keys are symmetrical to our values/initialValues
@@ -35,19 +36,21 @@ const validate = values => {
 };
 
 export const AddForm = props => {
-  // Pass the useFormik() hook initial form values, a validate function that will be called when
-  // form values change or fields are blurred, and a submit function that will
-  // be called when the form is submitted
+  
+  const generateId = () => {
+    return Date.now();
+  }
+
   const formik = useFormik({
     initialValues: {
+      id: '',
       firstName: '',
       lastName: '',
       orderId: '',
     },
     validate,
     onSubmit: values => {
-      const userInputJson = JSON.stringify(values, null, 2);
-      props.onSubmit(userInputJson);
+      props.onSubmit(values);
     },
   });
 
@@ -99,9 +102,16 @@ export const AddForm = props => {
           {formik.errors.orderId ? <div className="text-xs text-red-600 font-bold">{formik.errors.orderId}</div> : null}
         </div>
 
-        <button type="submit" className='text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700'>
+        <motion.button
+         type="submit" 
+         className='text-white bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-bl  focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2'
+         whileHover={{scale: 1.15}}
+         whileTap={{scale: 0.95}}
+         drag={true}
+         dragConstraints={{top: .1, bottom: .1, left: .1, right: .1}}
+         >
           Generate
-        </button>
+        </motion.button>
       </form>
     </div>
   );

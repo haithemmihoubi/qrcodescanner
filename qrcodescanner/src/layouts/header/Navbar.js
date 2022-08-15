@@ -12,8 +12,8 @@ export function Navbar() {
     >
       <div className="navbar mx-auto w-screen bg-white shadow-md">
         <nav className="flex justify-center space-x-20 p-3" >
-          <Link to="/" class="font-me px-3 py-2 text-black font-bold rounded-lg hover:bg-slate-100 hover:text-slate-900 uppercase" >Generate Qr code</Link>
-          <Link to="/scan" class="font-me px-3 py-2 text-black font-bold rounded-lg hover:bg-slate-100 hover:text-slate-900 uppercase" >Scan Qr code</Link>
+          <Link to="/" class="font-me px-3 py-2 text-black font-bold rounded-lg hover:bg-gradient-to-r from-cyan-500 to-blue-500 hover:text-white uppercase" >Generate Qr code</Link>
+          <Link to="/scan" class="font-me px-3 py-2 text-black font-bold rounded-lg hover:bg-gradient-to-r from-cyan-500 to-blue-500 hover:text-white uppercase" >Scan Qr code</Link>
         </nav>
       </div>
     </motion.div >
