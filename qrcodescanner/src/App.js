@@ -1,4 +1,3 @@
-import './App.css';
 import React from 'react';
 import {Navbar} from "./layouts/header/Navbar";
 import {Route, Routes, BrowserRouter as Router} from "react-router-dom";
@@ -16,9 +15,8 @@ function App() {
                 </Routes>
             </Router>
 
-
-        </div>
-    );
+    </div>
+  );
 }
 
 export default App;
