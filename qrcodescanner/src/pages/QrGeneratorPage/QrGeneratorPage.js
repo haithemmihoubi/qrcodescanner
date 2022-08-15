@@ -2,16 +2,27 @@ import { useState } from 'react';
 import { AddForm } from './AddForm';
 import QRCode from 'qrcode.react';
 import { motion } from "framer-motion";
+import bcrypt from 'bcryptjs';
 
 export const QrGeneratorPage = () => {
 
-  const [userInformationJson, setUserInformationJson] = useState('');
+  const [hashedUserInformation, setHashedUserInformation] = useState('');
   const [isSubmited, setIsSubmited] = useState(false);
 
   const addUserInformation = userInput => {
-    setUserInformationJson(userInput);
+
+    const hashedUserInput = hashSalt(userInput);
+    setHashedUserInformation(hashedUserInput);
     setIsSubmited(true);
   }
+
+  const hashSalt = DataToHash => {
+    const salt = bcrypt.genSaltSync(10);
+    const hash = bcrypt.hashSync(DataToHash, salt);
+    return hash;
+  }
+
+  
 
   const downloadQrCode = () => {
     const canvas = document.getElementById("qr");
@@ -63,7 +74,7 @@ export const QrGeneratorPage = () => {
             >
               <QRCode
                 id="qr"
-                value={userInformationJson}
+                value={hashedUserInformation}
                 renderAs="canvas"
                 size="200"
                 className='bg-white shadow-md rounded px-8 pt-6 pb-8'
