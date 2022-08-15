@@ -27,13 +27,24 @@ export const QrGeneratorPage = () => {
   }
 
   return (
-    <div className='flex flex-wrap '>
+    <motion.div
+      className='flex flex-wrap'
+    >
       <div className={`flex-auto flex justify-center items-center h-full transition-transform duration-700 ${isSubmited ? '' : 'translate-x-1/3'}`}>
         <motion.div
-          initial={{ y: 0, opacity: 0, scale: 0.5 }}
-          animate={{ y: 0, opacity: 1, scale: 1 }}
-          exit={{ y: -10, opacity: 0 }}
-          transition={{ duration: 0.5, delay: 0.3 }}>
+          initial={{ scale: 0}}
+          animate={{ rotate: 360, scale: 1 }}
+          transition={{
+            type: "spring",
+            stiffness: 260,
+            damping: 20,
+            delay: .35,
+            duration: 1
+          }}
+          drag={true}
+          dragConstraints={{ top: 1, bottom: 1, left: 1, right: 1 }}
+          whileHover={{ cursor: "pointer" }}
+        >
           <AddForm onSubmit={addUserInformation} />
         </motion.div>
       </div>
@@ -45,7 +56,11 @@ export const QrGeneratorPage = () => {
               initial={{ x: 500, opacity: 0 }}
               animate={{ x: 0, opacity: 1 }}
               exit={{ x: -10, opacity: 0 }}
-              transition={{ duration: 0.5 }}>
+              transition={{ duration: 0.5 }}
+              drag={true}
+              dragConstraints={{ top: 1, bottom: .1, left: .1, right: .1 }}
+              whileHover={{ cursor: "pointer" }}
+            >
               <QRCode
                 id="qr"
                 value={userInformationJson}
@@ -68,6 +83,6 @@ export const QrGeneratorPage = () => {
           </div>
         }
       </div>
-    </div>
+    </motion.div>
   );
 }
