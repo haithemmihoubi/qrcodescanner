@@ -9,22 +9,26 @@ const validate = values => {
     errors.firstName = 'Required';
   } else if (values.firstName.length > 15) {
     errors.firstName = 'Must be 15 characters or less';
-  } else if (!/^[A-Za-z0-9]*$/i.test(values.firstName)) {
-    errors.firstName = 'Must be only characters and/or numbers';
+  } else if (!/^[A-Za-z]*$/i.test(values.firstName)) {
+    errors.firstName = 'Must be only characters';
+  } else if (!(values.firstName[0] === values.firstName[0].toUpperCase())) {
+    errors.firstName = 'Must start with uppercase characters';
   }
 
   if (!values.lastName) {
     errors.lastName = 'Required';
   } else if (values.lastName.length > 20) {
     errors.lastName = 'Must be 20 characters or less';
-  } else if (!/^[A-Za-z0-9]*$/i.test(values.lastName)) {
-    errors.lastName = 'Must be only characters and/or numbers';
+  } else if (!/^[A-Za-z]*$/i.test(values.lastName)) {
+    errors.lastName = 'Must be only characters';
+  } else if (!(values.lastName[0] === values.lastName[0].toUpperCase())) {
+    errors.lastName = 'Must start with uppercase characters';
   }
 
   if (!values.orderId) {
     errors.orderId = 'Required';
-  } else if (!/^[A-Za-z0-9]*$/i.test(values.orderId)) {
-    errors.orderId = 'Must be only characters and/or numbers';
+  } else if (!/^[A-Za-z0-9-]*$/i.test(values.orderId)) {
+    errors.orderId = 'Must be characters, number and/or -';
   }
 
   return errors;
@@ -48,7 +52,8 @@ export const AddForm = props => {
   });
 
   return (
-    <form onSubmit={formik.handleSubmit} className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+    <div  className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+      <form onSubmit={formik.handleSubmit}>
         <div className='field mb-4'>
           <label htmlFor="firstName" className='block text-gray-700 text-base font-bold mb-2'>
             First Name
@@ -94,9 +99,10 @@ export const AddForm = props => {
           {formik.errors.orderId ? <div className="text-xs text-red-600 font-bold">{formik.errors.orderId}</div> : null}
         </div>
 
-        <button type="submit" className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline'>
+        <button type="submit" className='text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700'>
           Generate
         </button>
-    </form>
+      </form>
+    </div>
   );
 };
