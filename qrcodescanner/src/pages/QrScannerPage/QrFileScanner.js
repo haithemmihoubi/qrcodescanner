@@ -6,14 +6,17 @@ import DataList from './DataList';
 function QrFileScanner(key) {
   const [scanResultFile, setScanResultFile] = useState('');
   const [isScanned, setIsScanned] = useState(false);
+  const [showClearButton, setShowClearButton] = useState(false);
   const qrRef = useRef(null);
 
   const handleErrorFile = (error) => {
     console.log(error);
   }
+
   const handleScanFile = (result) => {
     setScanResultFile(result);
-    setIsScanned(true)
+    setIsScanned(true);
+    setShowClearButton(true);
   }
 
   const isJSON = fileToTest => {
@@ -41,6 +44,11 @@ function QrFileScanner(key) {
     qrRef.current.openImageDialog();
   }
 
+  const handleOnClickClearButton = () => {
+    setIsScanned(false);
+    setShowClearButton(false);
+  }
+
   return (
     <>
       <h3 className='text-gray-700 text-base font-bold mb-2'>Scan using image from file System</h3 >
@@ -57,7 +65,6 @@ function QrFileScanner(key) {
       <br />
       <div className='text-center'>
         <motion.button
-          type="submit"
           className=' text-white bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-bl  focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2'
           whileHover={{ scale: 1.15 }}
           whileTap={{ scale: 0.95 }}
@@ -67,13 +74,26 @@ function QrFileScanner(key) {
         >
           Scan by File
         </motion.button>
+        {showClearButton && <motion.button
+          className=' text-white bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-bl  focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2'
+          whileHover={{ scale: 1.15 }}
+          whileTap={{ scale: 0.95 }}
+          drag={true}
+          dragConstraints={{ top: .1, bottom: .1, left: .1, right: .1 }}
+          onClick={handleOnClickClearButton}
+        >
+          Clear
+        </motion.button>}
       </div>
       {isScanned &&
-        <div className='w-full'>
+        <motion.div className='w-full'
+        initial={{scale: 0}}
+        animate={{scale: 1}}
+        >
           <span className='font-bold'>output:</span><br />
           <div>{scanResultFile}</div><br />
           {decrypt(scanResultFile)}
-        </div>}
+        </motion.div>}
     </>
   )
 }
