@@ -76,7 +76,7 @@ export const QrGeneratorPage = props => {
               >
                 <QRCode
                   id="qr"
-                  value={hashedUserInformation}
+                  value={JSON.stringify(hashedUserInformation)}
                   renderAs="canvas"
                   size="200"
                   className='bg-white shadow-md rounded px-8 pt-6 pb-8'
