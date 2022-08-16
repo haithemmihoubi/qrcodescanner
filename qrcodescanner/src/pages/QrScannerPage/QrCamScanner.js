@@ -13,6 +13,7 @@ function QrCamScanner() {
     const handleScanWebCam = (result) => {
         if (result){
             setScanResultWebCam(result);
+            console.log(result);
         }
     }
 
@@ -21,7 +22,7 @@ function QrCamScanner() {
             <Card>
                 <Grid container spacing={2}>
                     <Grid item xl={4} lg={4} md={6} sm={12} xs={12}>
-                        <h3>Qr Code Scan by Web Cam</h3>
+                        <h3>Scan by your camera</h3>
                         <QrReader
                             onError={handleErrorWebCam}
                             onScan={handleScanWebCam}
@@ -35,7 +36,11 @@ function QrCamScanner() {
 }
 const useStyles = makeStyles((theme) => ({
     container: {
-        marginTop: 10
+        marginTop: 2,
+        width: '50%',
+        height: '70%',
+        alignContent: 'center',
+        alignItems: 'center',
     },
     btn : {
         marginTop: 10,
