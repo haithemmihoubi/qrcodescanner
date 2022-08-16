@@ -3,7 +3,6 @@ import { AddForm } from './AddForm';
 import QRCode from 'qrcode.react';
 import { motion } from "framer-motion";
 import bcrypt from 'bcryptjs';
-import AnimatedPage from '../AnimatedPage';
 
 export const QrGeneratorPage = props => {
 
@@ -39,7 +38,7 @@ export const QrGeneratorPage = props => {
   }
 
   return (
-    <AnimatedPage>
+    <>
       <motion.div
         className='flex flex-wrap'
       >
@@ -97,6 +96,6 @@ export const QrGeneratorPage = props => {
           }
         </div>
       </motion.div>
-    </AnimatedPage>
+    </>
   );
 }
