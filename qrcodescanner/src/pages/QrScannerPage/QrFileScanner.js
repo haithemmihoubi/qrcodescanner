@@ -70,8 +70,8 @@ function QrFileScanner(key) {
       </div>
       {isScanned &&
         <div className='w-full'>
-          <span>output:</span><br />
-          {scanResultFile}<br />
+          <span className='font-bold'>output:</span><br />
+          <div>{scanResultFile}</div><br />
           {decrypt(scanResultFile)}
         </div>}
     </>

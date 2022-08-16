@@ -43,7 +43,7 @@ function QrCamScanner() {
   return (
     
     <>
-      <h3 className='text-gray-700 text-base font-bold mb-2'>Scan using your camera</h3>
+      <h3 className='text-gray-700 text-base font-bold mb-2'>Scan using your Camera</h3>
       <QrReader
         onError={handleErrorWebCam}
         onScan={handleScanWebCam}
@@ -53,7 +53,7 @@ function QrCamScanner() {
       {isScanned &&
         <div className='w-full'>
           <span>output:</span><br />
-          {scanResultWebCam}<br />
+          <div>{scanResultWebCam}</div><br />
           {decrypt(scanResultWebCam)}
         </div>}
     </>
