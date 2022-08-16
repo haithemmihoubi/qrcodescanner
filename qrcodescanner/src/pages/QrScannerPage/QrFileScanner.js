@@ -1,8 +1,8 @@
 import React, {useState, useRef} from 'react';
-import {Container, Card, makeStyles, Grid, Button} from '@material-ui/core';
+import {Container, Card, makeStyles, Grid, Button, Table} from '@material-ui/core';
 import QrReader from 'react-qr-reader';
 
-function QrFileScanner()  {
+function QrFileScanner(key) {
     const [scanResultFile, setScanResultFile] = useState('');
     const classes = useStyles();
     const qrRef = useRef(null);
@@ -11,10 +11,17 @@ function QrFileScanner()  {
         console.log(error);
     }
     const handleScanFile = (result) => {
-        if (result) {
-            setScanResultFile(result);
+        let res = localStorage.getItem(result);
+        if (res) {
+            setScanResultFile(res);
+        }else {
+            setScanResultFile("qr code not found in our database");
         }
-    }
+
+        }
+
+
+
     const onScanFile = () => {
         qrRef.current.openImageDialog();
     }
@@ -24,33 +31,53 @@ function QrFileScanner()  {
             <Card>
                 <Grid container spacing={2}>
                     <Grid item xl={4} lg={4} md={6} sm={12} xs={12}>
-                        <Button className={classes.btn} variant="contained" color="secondary" onClick={onScanFile}>Scan Qr Code</Button>
+                        <b>Scan using image from file System</b>
+                        <br/>
+                        <br/>
                         <QrReader
                             ref={qrRef}
                             delay={300}
-                            style={{width: '100%'}}
+                            style={{width: '100%',paddingLeft:'60px'}}
                             onError={handleErrorFile}
                             onScan={handleScanFile}
                             legacyMode
                         />
-                        <h3>Scanned Code: {scanResultFile}</h3>
+                        <br/>
+                      <div>
+                            <Button variant="contained" color="primary" onClick={onScanFile}>
+                                Scan QR Code
+                            </Button>
+                        </div>
+                        <div>
+                            <h3>{ scanResultFile }</h3>
+                        </div>
                     </Grid>
                 </Grid>
             </Card>
         </Container>
     )
 }
+
 const useStyles = makeStyles((theme) => ({
     container: {
-        marginTop: 10
+        padding: '50px',
+        marginTop: 2,
+        width: '50%',
+        height: '70%',
+        alignContent: 'center',
+        alignItems: 'center',
     },
-    btn : {
+    btn: {
+        alignContent: 'center',
+        alignItems: 'center',
         marginTop: 10,
         marginBottom: 20
+
+
     }
 }));
 
-export default  QrFileScanner;
+export default QrFileScanner;
 
 
 

@@ -6,8 +6,11 @@ function QrScanner() {
 
     return(
         <AnimatedPage>
-            <QrFileScanner />
-            <QrCamScanner />
+
+            <div className="grid">
+                <div className="row-span-1 ..."><QrFileScanner /></div>
+                <div className="row-span-1 ...">  <QrCamScanner /></div>
+            </div>
         </AnimatedPage>
     );
 }
