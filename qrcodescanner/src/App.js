@@ -3,6 +3,7 @@ import { Navbar } from "./layouts/header/Navbar";
 import { Route, Routes, BrowserRouter as Router } from "react-router-dom";
 import { QrGeneratorPage } from "./pages/QrGeneratorPage/QrGeneratorPage";
 import QrScanner from "./pages/QrScannerPage/QrScanner";
+import {motion} from 'framer-motion';
 
 function App() {
   return (
