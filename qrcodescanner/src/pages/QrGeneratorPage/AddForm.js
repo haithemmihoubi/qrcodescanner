@@ -2,8 +2,6 @@ import React from 'react';
 import { useFormik } from 'formik';
 import { motion } from 'framer-motion';
 
-// A custom validation function. This must return an object
-// which keys are symmetrical to our values/initialValues
 const validate = values => {
   const errors = {};
   if (!values.firstName) {
@@ -36,14 +34,9 @@ const validate = values => {
 };
 
 export const AddForm = props => {
-  
-  const generateId = () => {
-    return Date.now();
-  }
 
   const formik = useFormik({
     initialValues: {
-      id: '',
       firstName: '',
       lastName: '',
       orderId: '',
